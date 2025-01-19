@@ -98,7 +98,7 @@ class ProductDetailPage extends Component {
           return (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-4 md:p-8">
               {/* Gallery Section */}
-              <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-5 gap-4">
+              <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-5 gap-4" data-testid="product-gallery">
                 <VerticalCarousel
                   gallery={gallery}
                   onSelectImage={(imageUrl) => this.handleImageSelect(imageUrl, gallery)}
