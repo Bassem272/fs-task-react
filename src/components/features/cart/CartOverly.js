@@ -171,6 +171,7 @@ render() {
       {(createOrder, { loading, error, data }) => {
         return (
           <div
+          data-testid="cart-overlay"
             className="fixed inset-0 flex justify-end"
             style={{ top: "64px", zIndex: 1000 }}
           >
