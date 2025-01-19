@@ -101,8 +101,8 @@ const Header = ({ onCategoryChange }) => {
             onClick={() => handleCategoryChange(category)}
             data-testid={
               activeCategory === category
-                ? "active-category-link"
-                : "category-link"
+                ? 'active-category-link'
+                : 'category-link'
             }
           >
             {category}
