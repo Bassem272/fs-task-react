@@ -315,7 +315,7 @@ render() {
                   <div className="border-t pt-4">
                     {/* Total Price Display */}
                     <div className="flex justify-between">
-                      <span className="font-semibold">Total:</span>
+                      <span className="font-semibold" data-testid='cart-total'>Total:</span>
                       <span className="font-semibold">
                         ${this.getTotalPrice().toFixed(2)}
                       </span>

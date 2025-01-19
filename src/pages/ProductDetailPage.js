@@ -124,6 +124,7 @@ class ProductDetailPage extends Component {
                   ${product.price[0].amount.toFixed(2)}
                 </p>
                 <button
+                data-testid='add-to-cart'
                   className={`bg-green-500 text-white px-4 py-2 mt-4 w-full ${
                     !isAddToCartEnabled ? 'disabled opacity-50' : ''
                   } hover:bg-green-400`}
@@ -134,7 +135,7 @@ class ProductDetailPage extends Component {
                 </button>
                 <div className="mt-6">
                   <h2 className="text-md md:text-lg font-bold mb-2">Description</h2>
-                  <div>{parse(product.description)}</div>
+                  <div data-testid='product-description'>{parse(product.description)}</div>
                 </div>
               </div>
             </div>
