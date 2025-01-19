@@ -90,7 +90,7 @@ const Header = ({ onCategoryChange }) => {
   return (
     <div className="flex flex-row items-center w-full h-16 p-1 m-0 border-b-4 shadow-sm text-black font-medium text-lg">
       <div className="flex flex-row items-center w-fit h-full ml-8">
-        {["Tech", "Clothes", "All"].map((category) => (
+        {/* {["Tech", "Clothes", "All"].map((category) => (
           <button
             key={category}
             className={`h-full w-fit p-1 m-2 text-slate-500 hover:text-green-400 hover:border-b-2 hover:border-green-400 ${
@@ -107,7 +107,25 @@ const Header = ({ onCategoryChange }) => {
           >
             {category}
           </button>
-        ))}
+        ))} */}
+        {["Tech", "Clothes", "All"].map((category) => (
+  <a
+    key={category}
+    href={`/${category.toLowerCase()}`} // Generates /all, /tech, /clothes
+    className={`h-full w-fit p-1 m-2 text-slate-500 hover:text-green-400 hover:border-b-2 hover:border-green-400 ${
+      activeCategory === category
+        ? "text-green-400 border-b-2 border-green-400"
+        : ""
+    }`}
+    onClick={(e) => {
+      e.preventDefault(); // Prevent default navigation
+      handleCategoryChange(category);
+    }}
+  >
+    {category}
+  </a>
+))}
+
       </div>
       <div className="flex-1"></div>
       {isCartOpen && (
