@@ -114,12 +114,13 @@ const Header = ({ onCategoryChange }) => {
         <img
           src="/refresh-svgrepo-com.svg"
           alt="refresh icon"
-          className="w-9 h-9"
+          className="w-6 h-6 hidden md:block"
         />
       )}
       <div className="flex-1"></div>
       <button
-        data-testid="cart-btn"
+        aria-label="Open Cart"
+        data-testid='cart-btn'
         className="relative h-full w-fit p-1 text-slate-500 hover:text-green-400 mr-12"
         onClick={toggleCart}
       >
