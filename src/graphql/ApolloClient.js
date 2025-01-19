@@ -1,7 +1,7 @@
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
 const client = new ApolloClient({
-  uri: 'https://adbc-197-32-83-84.ngrok-free.app', 
+  uri: 'https://dazzling-bulb-production-0b35.up.railway.app/', 
   cache: new InMemoryCache(),
 });
 
