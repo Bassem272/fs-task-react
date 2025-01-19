@@ -57,16 +57,29 @@ render() {
       data-testid={`product-${kebabCaseProductName}`} // Added data-testid here
     >
       {/* Product Image Container with Fixed Dimensions */}
-      <div className="p-4 w-full h-60 relative bg-white">
+      {/* <div className="p-4 w-full h-60 relative bg-white"> */}
         {/* Product Image */}
-        <Link to={`/product/${product.id}`}>
+        {/* <Link to={`/product/${product.id}`}>
           <img
             src={product.gallery[0].image_url}
             alt={product.name}
             className="w-full h-full object-cover"
             onError={(e) => { e.target.src = '/path/to/placeholder-image.png'; }} // Fallback image
           />
-        </Link>
+        </Link> */}
+        {/* Product Image Container with Fixed Dimensions */}
+<div className="p-4 w-full h-60 sm:h-72 md:h-80 lg:h-96 relative bg-white overflow-hidden rounded-lg">
+  {/* Product Image */}
+  <Link to={`/product/${product.id}`}>
+    <img
+      src={product.gallery[0].image_url}
+      alt={product.name}
+      className="w-full h-full object-cover" // Ensures image covers container dimensions without distortion
+      onError={(e) => { e.target.src = '/path/to/placeholder-image.png'; }} // Fallback image
+    />
+  </Link>
+
+
 
         {/* Overlay for Out of Stock */}
         {!product.inStock && (
