@@ -49,7 +49,6 @@ class ProductCard extends Component {
 
       this.setState({ isCartOpen: true });
       // Scroll to the top of the page
-      // Scroll to the top of the page
       window.scrollTo({
         top: 0, // Scroll to the top
         behavior: "smooth", // Smooth scrolling animation

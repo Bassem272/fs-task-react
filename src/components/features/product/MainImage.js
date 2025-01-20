@@ -1,32 +1,31 @@
 import React from 'react';
 
-// MainImage component displays a product image with next and previous buttons
 const MainImage = ({ gallery, currentImageIndex, nextImage, prevImage }) => {
   return (
-    // Container for the image and navigation buttons
-    <div className="sm:col-span-4 relative" >
-      
-      {/* Main Product Image */}
-      <img
-        src={gallery[currentImageIndex].image_url} // The source URL for the current image in the gallery
-        alt="Main Product" // Alternative text for accessibility
-        className="w-full h-64 sm:h-96 object-cover" // Responsive classes to ensure the image is properly displayed
-      />
-      
+    <div className="sm:col-span-4 relative">
+      {/* Container for Main Product Image */}
+      <div className="relative w-full h-64 sm:h-96 overflow-hidden">
+        <img
+          src={gallery[currentImageIndex].image_url} // Source for current image
+          alt="Main Product" // Alt text for accessibility
+          className="w-full h-full object-contain" // Ensure the image fits within the box
+        />
+      </div>
+
       {/* Button to navigate to the previous image */}
       <button
-        className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-300 p-2" // Positioning the button on the left side
-        onClick={prevImage} // Calls the prevImage function passed via props
+        className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-300 p-2 rounded-full shadow-md"
+        onClick={prevImage}
       >
-        &lt; {/* Display a left arrow symbol */}
+        &lt; {/* Left arrow */}
       </button>
-      
+
       {/* Button to navigate to the next image */}
       <button
-        className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-300 p-2" // Positioning the button on the right side
-        onClick={nextImage} // Calls the nextImage function passed via props
+        className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-300 p-2 rounded-full shadow-md"
+        onClick={nextImage}
       >
-        &gt; {/* Display a right arrow symbol */}
+        &gt; {/* Right arrow */}
       </button>
     </div>
   );
