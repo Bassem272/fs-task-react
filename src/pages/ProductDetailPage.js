@@ -76,18 +76,16 @@ class ProductDetailPage extends Component {
 
     localStorage.setItem("cart", JSON.stringify(cart));
     console.log("Cart updated:", cart);
-    window.scrollTo({
-      top: 0, // Scroll to the top
-      behavior: "smooth", // Smooth scrolling animation
-    });
-
-    // Calculate the time it takes to scroll based on typical behavior (500ms per 1000px).
-    const scrollTime = Math.min(window.scrollY / 2, 1000); // Cap the delay to 1 second for large pages.
-
-    // Wait for the scroll animation to finish, then toggle the cart visibility
+    // Wait for the scrolling to finish (using a timeout) before toggling
+   // Scroll to the top with a smooth animation
+   window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+  
     setTimeout(() => {
-      toggle();
-    }, scrollTime); // Trigger after the estimated scroll duratio
+    toggle();
+  }, 500); // Adjust the timeout as needed for the smooth scroll duration
   };
 
   render() {

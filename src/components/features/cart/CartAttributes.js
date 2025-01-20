@@ -48,13 +48,12 @@ class CartAttributes extends Component {
     return relevantAttributes.includes(attributeName);
   };
 
-
 render() {
   const { attributes } = this.props;
   const { selectedAttributes } = this.state;
 
   return (
-    <div className="space-y-8"> {/* Add consistent spacing between attribute groups */}
+    <div className="space-y-6"> {/* Consistent spacing between groups */}
       {attributes
         .filter((attr) => this.isRelevantAttribute(attr.name))
         .map((attr) => {
@@ -66,15 +65,15 @@ render() {
               data-testid={`cart-item-attribute-${kebabCaseName}`}
             >
               {/* Attribute Name */}
-              <h3 className="mb-4 text-base font-semibold text-gray-900">
+              <h3 className="mb-3 text-sm font-medium text-gray-800 sm:text-base">
                 {attr.name}
               </h3>
               {/* Attribute Options */}
               <div
                 className={`grid ${
                   attr.name.toLowerCase() === 'color'
-                    ? 'grid-cols-5 gap-4' // More spacing for color attributes
-                    : 'grid-cols-3 gap-3'
+                    ? 'grid-cols-3 gap-3 sm:grid-cols-5'
+                    : 'grid-cols-2 gap-2 sm:grid-cols-4'
                 }`}
               >
                 {attr.attribute_items.map((item) => {
@@ -86,26 +85,26 @@ render() {
                       onClick={() =>
                         this.handleAttributeClick(attr.name, item.value)
                       }
-                      className={`border text-sm rounded focus:outline-none flex justify-center items-center transition-all duration-200 ${
+                      className={`flex items-center justify-center rounded transition-all duration-200 focus:outline-none ${
                         isSelected
-                          ? 'border-blue-500 bg-blue-100 shadow-lg'
+                          ? 'border-blue-500 bg-blue-100 shadow-md'
                           : 'border-gray-300 bg-white shadow-sm'
                       }`}
                       style={
                         attr.name.toLowerCase() === 'color'
                           ? {
                               backgroundColor: item.value,
-                              width: '50px',
-                              height: '50px',
-                              borderRadius: '50%', // Circular buttons for color
+                              width: '40px',
+                              height: '40px',
+                              borderRadius: '50%',
                               border: isSelected
-                                ? '2px solid #3b82f6' // Blue border for selected
-                                : '1px solid #d1d5db',
+                                ? '2px solid #3b82f6' // Blue for selected
+                                : '1px solid #d1d5db', // Light gray for unselected
                             }
                           : {
-                              padding: '10px 16px', // Padding for non-color buttons
+                              padding: '8px 12px',
                               height: '40px',
-                              minWidth: '60px',
+                              minWidth: '50px',
                             }
                       }
                       data-testid={`cart-item-attribute-${kebabCaseName}-${item.value
@@ -115,7 +114,11 @@ render() {
                       }`}
                     >
                       {/* Display value for non-color attributes */}
-                      {attr.name.toLowerCase() !== 'color' ? item.displayValue : ''}
+                      {attr.name.toLowerCase() !== 'color' ? (
+                        <span className="text-xs sm:text-sm">
+                          {item.displayValue}
+                        </span>
+                      ) : null}
                     </button>
                   );
                 })}
@@ -127,7 +130,6 @@ render() {
   );
 }
 }
-
 CartAttributes.propTypes = {
   attributes: PropTypes.arrayOf(
     PropTypes.shape({
