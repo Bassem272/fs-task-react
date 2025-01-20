@@ -339,7 +339,7 @@ class ProductAttributes extends Component {
                     // Ensure proper format of `data-testid` by making color value safe for the DOM
                     const itemDataTestId = attr.name.toLowerCase() === 'color'
                     ? `product-attribute-color-#${item.value.toUpperCase().replace('#', '')}`
-                    : `product-attribute-${kebabCaseName}-${item.value.toLowerCase().replace(/\s+/g, '-')}`;
+                    : `product-attribute-${kebabCaseName}-${item.value.toUpperCase().replace(/\s+/g, '-')}`;
                   
 
                     return (
