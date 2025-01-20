@@ -338,8 +338,9 @@ class ProductAttributes extends Component {
                     const isSelected = selectedAttributes[attr.name] === item.value; // Check if the item is selected
                     // Ensure proper format of `data-testid` by making color value safe for the DOM
                     const itemDataTestId = attr.name.toLowerCase() === 'color'
-                      ? `product-attribute-color-${item.value.replace('#', '').toLowerCase()}`
-                      : `product-attribute-${kebabCaseName}-${item.value.toLowerCase().replace(/\s+/g, '-')}`;
+                    ? `product-attribute-color-#${item.value.toLowerCase().replace('#', '')}`
+                    : `product-attribute-${kebabCaseName}-${item.value.toLowerCase().replace(/\s+/g, '-')}`;
+                  
 
                     return (
                       <button
