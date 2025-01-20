@@ -4,7 +4,7 @@ import React from 'react';
 const MainImage = ({ gallery, currentImageIndex, nextImage, prevImage }) => {
   return (
     // Container for the image and navigation buttons
-    <div className="sm:col-span-4 relative">
+    <div className="sm:col-span-4 relative" >
       
       {/* Main Product Image */}
       <img

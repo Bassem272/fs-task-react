@@ -338,11 +338,13 @@ class ProductAttributes extends Component {
                     const isSelected = selectedAttributes[attr.name] === item.value; // Check if the item is selected
                     // Ensure proper format of `data-testid` by making color value safe for the DOM
                     const itemDataTestId = attr.name.toLowerCase() === 'color'
-                    ? `product-attribute-color-#${item.value.toLowerCase().replace('#', '')}`
+                    ? `product-attribute-color-#${item.value.toUpperCase().replace('#', '')}`
                     : `product-attribute-${kebabCaseName}-${item.value.toLowerCase().replace(/\s+/g, '-')}`;
                   
 
                     return (
+                      <div data-testid={itemDataTestId} >
+
                       <button
                         key={item.id}
                         onClick={() => this.handleAttributeClick(attr.name, item.value)} // Select item on click
@@ -353,10 +355,11 @@ class ProductAttributes extends Component {
                           ? { backgroundColor: item.value, width: '40px', height: '40px' } // For color attribute, show it as a colored button
                           : {}
                         }
-                        data-testid={itemDataTestId} // Set the formatted `data-testid`
-                      >
+                        // data-testid={itemDataTestId} // Set the formatted `data-testid`
+                        >
                         {attr.name.toLowerCase() !== 'color' ? item.displayValue : ''} {/* Display value, but skip it for color */}
                       </button>
+                        </div>
                     );
                   })}
                 </div>

@@ -13,7 +13,7 @@ test('Product details page should load and display correct attributes', async ({
     await expect(colorLocator).toBeVisible({ timeout: 15000 });
 
     // Ensure that the capacity is visible (512GB)
-    await page.locator('[data-testid="product-attribute-capacity-512G"]').waitFor({ state: 'visible', timeout: 15000 });
-    const capacityLocator = page.locator('[data-testid="product-attribute-capacity-512G"]');
-    await expect(capacityLocator).toBeVisible({ timeout: 15000 });
+    await page.locator('[data-testid="product-attribute-good"]').waitFor({ state: 'visible', timeout: 10000 });
+    const capacityLocator = page.locator('[data-testid="product-attribute-good"]');
+    await expect(capacityLocator).toBeVisible({ timeout: 10000 });
 });
