@@ -4,7 +4,7 @@ import { ApolloClientProvider } from './graphql/ApolloClient'; // Import Apollo 
 import ProductListPage from './pages/ProductListPage';  // Import ProductListPage Component
 import ProductDetailPage from './pages/ProductDetailPage';  // Import ProductDetailPage Component
 import Header from './components/shared/Header';  // Import Header Component
-
+import { CartProvider } from './context/CartContext'
 class App extends Component {
   // Set initial state: cartItems and activeCategory
   constructor(props) {
@@ -42,11 +42,13 @@ class App extends Component {
         <Router>  {/* Use Router for navigating between pages */}
           
           {/* Header Component that accepts cartItems, category change handler, and activeCategory */}
+        <CartProvider>
+
           <Header 
             cartItems={cartItems} 
             onCategoryChange={this.handleCategoryChange} 
             activeCategory={this.state.activeCategory} 
-          />
+            />
 
           <div>
             {/* Set up Routes for ProductListPage and ProductDetailPage */}
@@ -54,14 +56,15 @@ class App extends Component {
               <Route 
                 path="/" 
                 element={<ProductListPage addToCart={this.addToCart} activeCategory={activeCategory} />} 
-              />
+                />
               <Route 
                 path="/product/:id" 
                 element={<ProductDetailPage />} 
-              />
+                />
             </Routes>
           </div>
 
+                </CartProvider>
         </Router>
       </ApolloClientProvider>
     );

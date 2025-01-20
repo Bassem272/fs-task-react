@@ -6,7 +6,7 @@ import ProductAttributes from '../components/features/product/ProductAttributes'
 import { withParams } from '../hoc/WithParams';
 import parse from "html-react-parser";
 import { GET_PRODUCT } from '../graphql/queries'; // Importing the query
-
+import { CartContext } from '../context/CartContext';
 class ProductDetailPage extends Component {
   constructor(props) {
     super(props);
@@ -54,7 +54,7 @@ class ProductDetailPage extends Component {
     });
   };
 
-  handleAddToCart = (product) => {
+  handleAddToCart = (product , toggle) => {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     const { selectedAttributes } = this.state;
 
@@ -76,6 +76,7 @@ class ProductDetailPage extends Component {
 
     localStorage.setItem("cart", JSON.stringify(cart));
     console.log("Cart updated:", cart);
+    toggle()
   };
 
   render() {
@@ -83,6 +84,8 @@ class ProductDetailPage extends Component {
     const { currentImageIndex, isAddToCartEnabled } = this.state;
 
     return (
+      <CartContext.Consumer>
+        {({ isCartOpn, toggle }) => (  
       <Query query={GET_PRODUCT} variables={{ id }}>
         {({ loading, error, data }) => {
           if (loading) return <p>Loading...</p>;
@@ -96,6 +99,8 @@ class ProductDetailPage extends Component {
           }
 
           return (
+
+            
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-4 md:p-8">
               {/* Gallery Section */}
               <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-5 gap-4" data-testid="product-gallery">
@@ -128,7 +133,7 @@ class ProductDetailPage extends Component {
                   className={`bg-green-500 text-white px-4 py-2 mt-4 w-full ${
                     !isAddToCartEnabled ? 'disabled opacity-50' : ''
                   } hover:bg-green-400`}
-                  onClick={() => this.handleAddToCart(product)}
+                  onClick={() => this.handleAddToCart(product , toggle)}
                   disabled={!isAddToCartEnabled}
                 >
                   {product.inStock ? 'Add to Cart' : 'Out of Stock'}
@@ -142,7 +147,10 @@ class ProductDetailPage extends Component {
           );
         }}
       </Query>
-    );
+  
+            )}
+      </CartContext.Consumer>
+        );
   }
 }
 

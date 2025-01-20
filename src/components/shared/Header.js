@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
-import CartOverlay from "../features/cart/CartOverly"; 
-
+import CartOverlay from "../features/cart/CartOverly";
+import { useCart } from "../../context/CartContext";
 
 const Header = ({ onCategoryChange }) => {
   const [totalItems, setTotalItems] = useState(0);
-  const [isCartOpen, setIsCartOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState("All"); // State for active category
   const navigate = useNavigate();
-
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const { isCartOpn, toggle } = useCart();
   // Function to calculate and update total items
   const updateTotalItems = () => {
     const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
@@ -79,54 +79,39 @@ const Header = ({ onCategoryChange }) => {
 
   // Toggle cart overlay
   const toggleCart = () => {
-    setIsCartOpen((prev) => !prev);
+    // setIsCartOpen((prev) => !prev);
+    toggle();
   };
 
   // Close cart overlay
   const closeCart = () => {
-    setIsCartOpen(false);
+    // setIsCartOpen(false);
+    toggle();
   };
 
   return (
     <div className="flex flex-row items-center w-full h-16 p-1 m-0 border-b-4 shadow-sm text-black font-medium text-lg">
       <div className="flex flex-row items-center w-fit h-full ml-8">
-
-        {/* {["Tech", "Clothes", "All"].map((category) => (
-  <a
-    key={category}
-    href={`/${category.toLowerCase()}`} // Generates /all, /tech, /clothes
-    className={`h-full w-fit p-1 m-2 text-slate-500 hover:text-green-400 hover:border-b-2 hover:border-green-400 ${
-      activeCategory === category
-        ? "text-green-400 border-b-2 border-green-400"
-        : ""
-    }`}
-    onClick={(e) => {
-      e.preventDefault(); // Prevent default navigation
-      handleCategoryChange(category);
-    }}
-  >
-    {category}
-  </a>
-))} */}
-{["Tech", "Clothes", "All"].map((category) => (
-  <a
-    key={category}
-    href={`/${category.toLowerCase()}`} // Generates /all, /tech, /clothes
-    className={`h-full w-fit p-1 m-2 text-slate-500 hover:text-green-400 hover:border-b-2 hover:border-green-400 ${
-      activeCategory === category
-        ? "text-green-400 border-b-2 border-green-400"
-        : ""
-    }`}
-    data-testid={activeCategory === category ? 'active-category-link' : ''}
-    onClick={(e) => {
-      e.preventDefault(); // Prevent default navigation
-      handleCategoryChange(category);
-    }}
-  >
-    {category}
-  </a>
-))}
-
+        {["Tech", "Clothes", "All"].map((category) => (
+          <a
+            key={category}
+            href={`/${category.toLowerCase()}`} // Generates /all, /tech, /clothes
+            className={`h-full w-fit p-1 m-2 text-slate-500 hover:text-green-400 hover:border-b-2 hover:border-green-400 ${
+              activeCategory === category
+                ? "text-green-400 border-b-2 border-green-400"
+                : ""
+            }`}
+            data-testid={
+              activeCategory === category ? "active-category-link" : ""
+            }
+            onClick={(e) => {
+              e.preventDefault(); // Prevent default navigation
+              handleCategoryChange(category);
+            }}
+          >
+            {category}
+          </a>
+        ))}
       </div>
       <div className="flex-1"></div>
       {isCartOpen && (
@@ -139,7 +124,7 @@ const Header = ({ onCategoryChange }) => {
       <div className="flex-1"></div>
       <button
         aria-label="Open Cart"
-        data-testid='cart-btn'
+        data-testid="cart-btn"
         className="relative h-full w-fit p-1 text-slate-500 hover:text-green-400 mr-12"
         onClick={toggleCart}
       >
@@ -150,7 +135,7 @@ const Header = ({ onCategoryChange }) => {
           </span>
         )}
       </button>
-      {isCartOpen && <CartOverlay onClose={closeCart} />}
+      {isCartOpn && <CartOverlay onClose={closeCart} />}
     </div>
   );
 };
