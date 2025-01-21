@@ -193,7 +193,7 @@ class CartOverlay extends Component {
 
               {/* Sidebar Container (Cart Side Panel) */}
               <div
-                className={`flex flex-col bg-red-300  p-4 shadow-lg relative z-50 lg:mr-12 md:mr-12 max-w-xs sm:max-w-sm sm:mr-0 ${
+                className={`flex flex-col bg-white  p-4 shadow-lg relative z-50 lg:mr-12 md:mr-12 max-w-xs sm:max-w-sm sm:mr-0 ${
                   cartItems.length === 0 ? "h-24" : "h-5/6"
                 }`}
               >
