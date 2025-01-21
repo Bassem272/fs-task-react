@@ -70,10 +70,10 @@ render() {
               </h3>
               {/* Attribute Options */}
               <div
-                className={`grid ${
+                className={` ${
                   attr.name.toLowerCase() === 'color'
-                    ? 'grid-cols-3 gap-3 sm:grid-cols-5'
-                    : 'grid-cols-2 gap-2 sm:grid-cols-4'
+                    ? ' grid grid-cols-3 gap-3 sm:grid-cols-5'
+                    : 'flex flex-col-2 sm:grid-cols-4'
                 }`}
               >
                 {attr.attribute_items.map((item) => {

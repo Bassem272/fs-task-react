@@ -182,7 +182,7 @@ class CartOverlay extends Component {
           return (
             <div
               data-testid="cart-overlay"
-              className="fixed inset-0 flex justify-end"
+              className="fixed inset-0 flex justify-end "
               style={{ top: "64px", zIndex: 1000 }}
             >
               {/* Overlay to darken the background and close the cart */}
@@ -193,7 +193,7 @@ class CartOverlay extends Component {
 
               {/* Sidebar Container (Cart Side Panel) */}
               <div
-                className={`flex flex-col bg-white p-4 shadow-lg relative z-50 mr-12 max-w-xs sm:max-w-sm ${
+                className={`flex flex-col bg-red-300  p-4 shadow-lg relative z-50 lg:mr-12 md:mr-12 max-w-xs sm:max-w-sm sm:mr-0 ${
                   cartItems.length === 0 ? "h-24" : "h-5/6"
                 }`}
               >
@@ -254,9 +254,10 @@ class CartOverlay extends Component {
                           </div>
 
                           {/* Right side: Image, Quantity Control and Remove Button */}
-                          <div className="w-2/3 flex flex-col items-center">
-                            <div className="flex items-center mb-4">
-                              <div className="flex flex-col items-center">
+                          <div className="w-full sm:w-2/3 flex flex-col items-center">
+                            <div className="flex items-center mb-4 w-full justify-between">
+                              {/* Quantity Controls and Image Container */}
+                              <div className="flex flex-col items-center w-full">
                                 {/* Increase Quantity Button */}
                                 <button
                                   className="mb-6 mt-5"
@@ -296,12 +297,14 @@ class CartOverlay extends Component {
                               </div>
 
                               {/* Item Image */}
-                              <img
-                                src={item.gallery[0].image_url}
-                                alt={item.name}
-                                className="w-26 h-33 object-cover border-y-2 border-red-400 w-full max-w-full"
-                                style={{ maxHeight: "120px" }}
-                              />
+                              <div className="w-full max-w-[120px] h-auto overflow-hidden flex justify-center">
+                                <img
+                                  src={item.gallery[0].image_url}
+                                  alt={item.name}
+                                  className="object-cover w-full h-full"
+                                  style={{ maxHeight: "120px" }} // Limit the maximum height of the image
+                                />
+                              </div>
                             </div>
 
                             {/* Remove Item Button */}

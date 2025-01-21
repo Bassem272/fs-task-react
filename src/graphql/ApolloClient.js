@@ -1,7 +1,7 @@
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
 const client = new ApolloClient({
-  uri: 'https://dazzling-bulb-production-0b35.up.railway.app/', 
+  uri: process.env.REACT_APP_API_URI, 
   cache: new InMemoryCache(),
 });
 
@@ -10,4 +10,4 @@ const ApolloClientProvider = ({ children }) => (
 );
 
 export { ApolloClientProvider };
-// uri: 'http://localhost:8090', 
+
